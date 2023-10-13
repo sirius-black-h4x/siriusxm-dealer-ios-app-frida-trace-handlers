@@ -33,9 +33,9 @@ function opts2str(opt) {
 
 function nibble2hexstr(nibble) {
   if (nibble >= 0 && nibble < 10) {
-    return "0" + nibble;
+    return String.fromCharCode("0".charCodeAt(0) + nibble);
   } else if (nibble < 16) {
-    return String.fromCharCode("A".charCodeAt(0) + nibble);
+    return String.fromCharCode("A".charCodeAt(0) - 10 + nibble);
   } else {
     throw new Error(`nibble: ${nibble} out of range`);
   }
@@ -52,7 +52,7 @@ function byte2hexstr(byte) {
 function uint8array2hexstr(arr) {
   var hexstr = "";
   for (var i = 0; i < arr.length; ++i) {
-    hexstr += byte2hexstr(i);
+    hexstr += byte2hexstr(arr[i]);
   }
   return hexstr;
 }
